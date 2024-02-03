@@ -1,9 +1,8 @@
 import supabase from './supabase';
 
-// Signup function
 export async function signUp(email, password) {
   try {
-    const { user, error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
       options: {
@@ -17,7 +16,9 @@ export async function signUp(email, password) {
       throw new Error(error.message);
     }
 
-    return user;
+    localStorage.setItem('userId', data.user.id);
+
+    return data.user;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -30,15 +31,16 @@ export async function signOut() {
     if (error) {
       throw new Error(error.message);
     }
+
+    localStorage.removeItem('userId');
   } catch (error) {
     throw new Error(error.message);
   }
 }
 
-// Login function
 export async function login(email, password) {
   try {
-    const { user, error } = await supabase.auth.signIn({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
@@ -47,7 +49,9 @@ export async function login(email, password) {
       throw new Error(error.message);
     }
 
-    return user;
+    localStorage.setItem('userId', data.user.id);
+
+    return data.user;
   } catch (error) {
     throw new Error(error.message);
   }

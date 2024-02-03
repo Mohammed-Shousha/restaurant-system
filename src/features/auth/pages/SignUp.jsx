@@ -1,12 +1,15 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-import { signUp } from '@services/authServices';
+import { useAuth } from '@hooks/authHooks';
 
 import styles from '../styles/auth.module.css';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const { handleSignUp } = useAuth();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -18,9 +21,11 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = await signUp(email, password);
 
-    console.log({ user });
+    await handleSignUp(email, password);
+
+    setEmail('');
+    setPassword('');
   };
 
   return (
@@ -40,6 +45,9 @@ const SignUp = () => {
           onChange={handlePasswordChange}
         />
         <button type='submit'>Sign Up</button>
+        <p>
+          Already have an account? <Link to='/login'>Login</Link>
+        </p>
       </form>
     </div>
   );
