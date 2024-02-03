@@ -4,7 +4,11 @@
     "paths": {
       "@features/*": ["./features/*"],
       "@components/*": ["./components/*"],
-      "@services/*": ["./services/*"]
+      "@pages/*": ["./pages/*"],
+      "@services/*": ["./services/*"],
+      "@hooks/*": ["./hooks/*"],
+      "@utils/*": ["./utils/*"],
+      "@context/*": ["./context/*"]
     }
   },
   "exclude": ["node_modules", "dist"]
