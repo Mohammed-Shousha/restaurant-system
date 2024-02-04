@@ -1,32 +1,56 @@
-import { updateMenuItem, deleteMenuItem } from '@services/menuServices';
+import Modal from '@components/Modal';
+import { deleteMenuItem } from '@services/menuServices';
+
+import UpdateMenuItemModal from './UpdateMenuItemModal';
+import DeleteMenuItemModal from './DeleteMenuItemModal';
+
+import Button from '@components/Button';
+import Item from '@components/Item';
+
+import styled from 'styled-components';
+
+const StyledAdminMenuItem = styled(Item)`
+  & span {
+    width: 20%;
+  }
+
+  & div {
+    display: flex;
+    gap: 1.2rem;
+  }
+`;
 
 const AdminMenuItem = ({ item }) => {
   const { id, name, price, description } = item;
 
-  // TODO: opens a modal with a form to edit the menu item
-  const handleEdit = async () => {
-    const menuItem = await updateMenuItem(id, {
-      name,
-      price,
-      description,
-    });
-
-    console.log({ menuItem });
-  };
-
-  // TODO: opens a modal with a confirmation message to delete the menu item
   const handleDelete = async () => {
     await deleteMenuItem(id);
   };
 
   return (
-    <li>
+    <StyledAdminMenuItem>
       <span>{name}</span>
       <span>{price}</span>
       <span>{description}</span>
-      <button onClick={handleEdit}>Edit</button>
-      <button onClick={handleDelete}>Delete</button>
-    </li>
+
+      <Modal>
+        <div>
+          <Modal.Open opens='edit'>
+            <Button>Edit</Button>
+          </Modal.Open>
+          <Modal.Open opens='delete'>
+            <Button variation='danger'>Delete</Button>
+          </Modal.Open>
+        </div>
+
+        <Modal.Window name='edit'>
+          <UpdateMenuItemModal menuItem={item} />
+        </Modal.Window>
+        <Modal.Window name='delete'>
+          <DeleteMenuItemModal onConfirm={handleDelete} />
+        </Modal.Window>
+      </Modal>
+    </StyledAdminMenuItem>
   );
 };
 
