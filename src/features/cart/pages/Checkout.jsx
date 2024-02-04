@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import useCart from '@hooks/useCart';
 import { useCreateOrder } from '@hooks/ordersHooks';
+import Spinner from '@components/Spinner';
 
 const Checkout = () => {
   const { cartItems, cartTotal } = useCart();
@@ -15,7 +16,7 @@ const Checkout = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (order) {

@@ -1,9 +1,13 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '@hooks/authHooks';
 
-import styles from '../styles/auth.module.css';
-import { Link } from 'react-router-dom';
+import Form from '@components/Form';
+import Input from '@components/Input';
+import Button from '@components/Button';
+import Heading from '@components/Heading';
+import FormRowVertical from '@components/FormRowVertical';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -29,27 +33,33 @@ const Login = () => {
   };
 
   return (
-    <div className={styles['auth-container']}>
-      <h1>Login</h1>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='text'
-          placeholder='Email'
-          value={email}
-          onChange={handleEmailChange}
-        />
-        <input
-          type='password'
-          placeholder='Password'
-          value={password}
-          onChange={handlePasswordChange}
-        />
-        <button type='submit'>Login</button>
+    <>
+      <Heading as='h1'>Login</Heading>
+      <Form onSubmit={handleSubmit}>
+        <FormRowVertical label='Email address'>
+          <Input
+            type='text'
+            placeholder='Email'
+            value={email}
+            onChange={handleEmailChange}
+          />
+        </FormRowVertical>
+        <FormRowVertical label='Password'>
+          <Input
+            type='password'
+            placeholder='Password'
+            value={password}
+            onChange={handlePasswordChange}
+          />
+        </FormRowVertical>
+        <FormRowVertical>
+          <Button type='submit'>Login</Button>
+        </FormRowVertical>
         <p>
           Don&apos;t have an account? <Link to='/signup'>Sign up</Link>
         </p>
-      </form>
-    </div>
+      </Form>
+    </>
   );
 };
 

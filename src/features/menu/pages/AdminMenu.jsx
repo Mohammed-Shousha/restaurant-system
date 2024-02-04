@@ -4,17 +4,20 @@ import { useGetMenuItems } from '@hooks/menuHooks';
 
 import AdminMenuItem from '../components/AdminMenuItem';
 
+import Button from '@components/Button';
+import Spinner from '@components/Spinner';
+
 const AdminMenu = () => {
   const navigate = useNavigate();
 
   const { menuItems, isLoading, error } = useGetMenuItems();
 
   const handleAddMenuItem = () => {
-    navigate('/menu/add');
+    navigate('/admin-menu/add');
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
@@ -29,7 +32,7 @@ const AdminMenu = () => {
           <AdminMenuItem key={item.id} item={item} />
         ))}
       </ul>
-      <button onClick={handleAddMenuItem}>Add New Item</button>
+      <Button onClick={handleAddMenuItem}>Add New Item</Button>
     </div>
   );
 };

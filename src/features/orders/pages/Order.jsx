@@ -1,3 +1,4 @@
+import Spinner from '@components/Spinner';
 import { useGetOrderById } from '@hooks/ordersHooks';
 import { calculateTotal } from '@utils/helpers';
 import { useParams } from 'react-router-dom';
@@ -8,7 +9,7 @@ const Order = () => {
   const { order, isLoading } = useGetOrderById(id);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   console.log({ order });

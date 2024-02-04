@@ -1,5 +1,7 @@
 import useCart from '@hooks/useCart';
 
+import Button from '@components/Button';
+
 const UpdateItemQuantity = ({ itemId }) => {
   const { increaseItemQuantity, decreaseItemQuantity, getCurrentQuantity } =
     useCart();
@@ -16,9 +18,9 @@ const UpdateItemQuantity = ({ itemId }) => {
 
   return (
     <div>
-      <button onClick={handleDecrease}>-</button>
+      <Button onClick={handleDecrease}>-</Button>
       <span>{itemQuantity}</span>
-      <button onClick={handleIncrease}>+</button>
+      <Button onClick={handleIncrease}>+</Button>
     </div>
   );
 };

@@ -1,6 +1,27 @@
 import UpdateItemQuantity from '@features/cart/components/UpdateItemQuantity';
 import useCart from '@hooks/useCart';
 
+import Button from '@components/Button';
+
+import styled from 'styled-components';
+import Item from '@components/Item';
+
+const StyledMenuItem = styled(Item)`
+  & p {
+    color: var(--color-grey-500);
+  }
+
+  & button {
+    width: 12rem;
+  }
+
+  & div > div {
+    display: flex;
+    gap: 2.4rem;
+    align-items: center;
+  }
+`;
+
 const MenuItem = ({ item }) => {
   const { id, name, price, description } = item;
 
@@ -11,16 +32,20 @@ const MenuItem = ({ item }) => {
   };
 
   return (
-    <li>
-      <span>{name}</span>
-      <span>{price}</span>
-      <span>{description}</span>
+    <StyledMenuItem>
+      <div>
+        <div>
+          <h3>{name}</h3>
+          <h4>{price} $</h4>
+        </div>
+        <p>{description}</p>
+      </div>
       {isItemInCart(id) ? (
         <UpdateItemQuantity itemId={id} />
       ) : (
-        <button onClick={handleAddToCart}>Add to Cart</button>
+        <Button onClick={handleAddToCart}>Add to Cart</Button>
       )}
-    </li>
+    </StyledMenuItem>
   );
 };
 

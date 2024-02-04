@@ -1,12 +1,13 @@
 import MenuItem from '../components/MenuItem';
 import { useGetMenuItems } from '../../../hooks/menuHooks';
 import { Link } from 'react-router-dom';
+import Spinner from '@components/Spinner';
 
 const Menu = () => {
   const { menuItems, isLoading, error } = useGetMenuItems();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   if (error) {
