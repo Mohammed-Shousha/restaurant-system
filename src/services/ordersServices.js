@@ -1,17 +1,16 @@
 import { calculateTotal } from '@utils/helpers';
 import supabase from './supabase';
+import { orderStatus } from '@utils/constants';
 
 const ordersTable = 'orders';
 const orderItemsTable = 'order_items';
 const menuItemsTable = 'menu_items';
-const status = {
-  pending: 'pending',
-  preparing: 'preparing',
-  completed: 'completed',
-};
 
 export const getAllOrders = async () => {
-  const { data, error } = await supabase.from(ordersTable).select('*');
+  const { data, error } = await supabase
+    .from(ordersTable)
+    .select('*')
+    .order('id');
   if (error) throw error;
   return data;
 };
@@ -62,15 +61,16 @@ export const createOrder = async (userId, items) => {
     .from(ordersTable)
     .insert({
       user_id: userId,
-      status: status.pending,
+      status: orderStatus.pending,
       total: calculateTotal(items),
     })
-    .select();
+    .select()
+    .single();
 
-  await addOrderItems(data[0].id, items);
+  await addOrderItems(data.id, items);
 
   if (error) throw error;
-  return data[0];
+  return data;
 };
 
 const addOrderItems = async (orderId, items) => {
@@ -94,7 +94,8 @@ export const updateOrderStatus = async (id, status) => {
     .from(ordersTable)
     .update({ status })
     .eq('id', id)
-    .select();
+    .select()
+    .single();
 
   if (error) throw error;
   return data;

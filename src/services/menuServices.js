@@ -3,7 +3,7 @@ import supabase from './supabase';
 const table = 'menu_items';
 
 export const getMenuItems = async () => {
-  let { data, error } = await supabase.from(table).select('*');
+  let { data, error } = await supabase.from(table).select('*').order('id');
   if (error) throw error;
   return data;
 };

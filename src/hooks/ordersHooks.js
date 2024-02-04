@@ -4,6 +4,7 @@ import {
   getOrderById,
   getOrdersByUserId,
   createOrder,
+  updateOrderStatus,
 } from '@services/ordersServices';
 
 export const useGetOrders = () => {
@@ -81,4 +82,30 @@ export const useGetOrdersByUserId = (userId) => {
   }, [userId]);
 
   return orders;
+};
+
+export const useUpdateOrderStatus = () => {
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [order, setOrder] = useState(null);
+
+  const handleUpdateOrderStatus = async (orderId, newStatus) => {
+    setIsLoading(true);
+    try {
+      const updatedOrder = await updateOrderStatus(orderId, newStatus);
+      console.log({ updatedOrder });
+      setOrder(updatedOrder);
+    } catch (error) {
+      setError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return {
+    isLoading,
+    error,
+    handleUpdateOrderStatus,
+    order,
+  };
 };
