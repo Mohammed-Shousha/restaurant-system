@@ -1,12 +1,13 @@
 import { Navigate, Outlet } from 'react-router-dom';
 
 import useAuthentication from '@hooks/useAuthentication';
+import Spinner from './Spinner';
 
 const PrivateRoute = () => {
   const { isAuthenticated, isLoading } = useAuthentication();
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Spinner />;
   }
 
   return isAuthenticated ? <Outlet /> : <Navigate to='/login' replace />;
