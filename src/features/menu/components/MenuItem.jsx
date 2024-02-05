@@ -11,10 +11,6 @@ const StyledMenuItem = styled(Item)`
     color: var(--color-grey-500);
   }
 
-  & button {
-    width: 12rem;
-  }
-
   & div > div {
     display: flex;
     gap: 2.4rem;
