@@ -18,7 +18,6 @@ import AdminMenu from '@features/menu/pages/AdminMenu';
 import Cart from '@features/cart/pages/Cart';
 
 import { CartProvider } from '@context/CartContext';
-import Checkout from '@features/cart/pages/Checkout';
 
 import GlobalStyles from '@styles/GlobalStyles';
 import Layout from '@components/Layout';
@@ -54,7 +53,6 @@ const App = () => {
               <Route path='/orders/:id' element={<Order />} />
 
               <Route path='/cart' element={<Cart />} />
-              <Route path='/checkout' element={<Checkout />} />
 
               <Route path='*' element={<NotFoundPage />} />
             </Route>
