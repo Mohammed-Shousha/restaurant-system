@@ -27,31 +27,29 @@ const AdminMenuItem = ({ item }) => {
   const { handleDeleteMenuItem } = useDeleteMenuItem(id);
 
   return (
-    <>
-      <StyledAdminMenuItem>
-        <span>{name}</span>
-        <span>{price}</span>
-        <span>{description}</span>
+    <StyledAdminMenuItem>
+      <span>{name}</span>
+      <span>{price}</span>
+      <span>{description}</span>
 
-        <Modal>
-          <div>
-            <Modal.Open opens='edit'>
-              <Button>Edit</Button>
-            </Modal.Open>
-            <Modal.Open opens='delete'>
-              <Button variation='danger'>Delete</Button>
-            </Modal.Open>
-          </div>
+      <Modal>
+        <div>
+          <Modal.Open opens='edit'>
+            <Button>Edit</Button>
+          </Modal.Open>
+          <Modal.Open opens='delete'>
+            <Button variation='danger'>Delete</Button>
+          </Modal.Open>
+        </div>
 
-          <Modal.Window name='edit'>
-            <UpdateMenuItemModal menuItem={item} />
-          </Modal.Window>
-          <Modal.Window name='delete'>
-            <DeleteMenuItemModal onConfirm={handleDeleteMenuItem} />
-          </Modal.Window>
-        </Modal>
-      </StyledAdminMenuItem>
-    </>
+        <Modal.Window name='edit'>
+          <UpdateMenuItemModal menuItem={item} />
+        </Modal.Window>
+        <Modal.Window name='delete'>
+          <DeleteMenuItemModal onConfirm={handleDeleteMenuItem} />
+        </Modal.Window>
+      </Modal>
+    </StyledAdminMenuItem>
   );
 };
 

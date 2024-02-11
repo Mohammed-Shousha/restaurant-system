@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import Row from '@components/Row';
 import CartItem from '../components/CartItem';
@@ -20,24 +20,14 @@ const Cart = () => {
 
   const userId = localStorage.getItem('userId');
 
-  const { order, isLoading, handleCreateOrder } = useCreateOrder();
+  const { isLoading, handleCreateOrder } = useCreateOrder(userId);
 
   const handleCheckout = async () => {
-    await handleCreateOrder(userId, cartItems);
+    handleCreateOrder(cartItems);
   };
 
   if (isLoading) {
     return <Spinner />;
-  }
-
-  // TODO: edit styles
-  if (order) {
-    return (
-      <div>
-        Order created successfully
-        <Link to={`/orders/${order.id}`}>Order Details</Link>
-      </div>
-    );
   }
 
   return (

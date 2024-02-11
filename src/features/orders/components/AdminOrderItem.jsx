@@ -1,43 +1,39 @@
 import { orderStatus } from '@utils/constants';
 import { useUpdateOrderStatus } from '@hooks/ordersHooks';
 
+import Button from '@components/Button';
+import Spinner from '@components/Spinner';
+import Item from '@components/Item';
+
 const AdminOrderItem = ({ order }) => {
-  const {
-    handleUpdateOrderStatus,
-    isLoading: isUpdating,
-    order: updatedOrder,
-  } = useUpdateOrderStatus();
+  const { handleUpdateOrderStatus, isLoading: isUpdating } =
+    useUpdateOrderStatus(order.id);
 
   if (isUpdating) {
-    return <div>Updating...</div>;
+    return <Spinner />;
   }
 
   return (
-    <div>
-      <h2>Order ID: {order.id}</h2>
-      <p>total: {order.total} $</p>
-      <p>Status: {updatedOrder?.status || order.status}</p>
-      <button
-        onClick={() => handleUpdateOrderStatus(order.id, orderStatus.preparing)}
-      >
+    <Item>
+      <h3>Order ID: {order.id}</h3>
+      <p>{order.total} $</p>
+      <p>{order.status}</p>
+      <Button onClick={() => handleUpdateOrderStatus(orderStatus.preparing)}>
         Mark as preparing
-      </button>
-      <button
-        onClick={() => handleUpdateOrderStatus(order.id, orderStatus.shipping)}
-      >
+      </Button>
+      <Button onClick={() => handleUpdateOrderStatus(orderStatus.shipping)}>
         Mark as Shipping
-      </button>
-      <button
-        onClick={() => handleUpdateOrderStatus(order.id, orderStatus.delivered)}
-      >
+      </Button>
+      <Button onClick={() => handleUpdateOrderStatus(orderStatus.delivered)}>
         Mark as Delivered
-      </button>
-      <button
-        onClick={() => handleUpdateOrderStatus(order.id, orderStatus.cancelled)}
+      </Button>
+      <Button
+        variation='danger'
+        onClick={() => handleUpdateOrderStatus(orderStatus.cancelled)}
       >
         Cancel Order
-      </button>
-    </div>
+      </Button>
+    </Item>
   );
 };
 

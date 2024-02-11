@@ -1,3 +1,4 @@
+import Item from '@components/Item';
 import Spinner from '@components/Spinner';
 import { useGetOrderById } from '@hooks/ordersHooks';
 import { calculateTotal } from '@utils/helpers';
@@ -12,24 +13,24 @@ const Order = () => {
     return <Spinner />;
   }
 
-  console.log({ order });
-
   return (
-    <div>
+    <>
       <h1>Order Details</h1>
       <p>Order ID: {order.id}</p>
-      <p>Order Status: {order.status}</p>
+      <p>{order.status}</p>
 
       <h2>Items:</h2>
       <ul>
         {order.items.map((item) => (
-          <li key={item.id}>
-            {item.name} - ${item.price}
-          </li>
+          <Item key={item.id}>
+            <p>{item.name}</p>
+            <p>{item.price} $</p>
+            <p>&times;{item.quantity}</p>
+          </Item>
         ))}
       </ul>
       <h3>Total: ${calculateTotal(order.items)}</h3>
-    </div>
+    </>
   );
 };
 

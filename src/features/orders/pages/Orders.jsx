@@ -1,8 +1,15 @@
-import { useGetOrders } from '@hooks/ordersHooks';
+import { useGetOrdersByUserId } from '@hooks/ordersHooks';
 import OrderItem from '../components/OrderItem';
+import Spinner from '@components/Spinner';
 
 const OrdersPage = () => {
-  const { orders } = useGetOrders();
+  const userId = localStorage.getItem('userId');
+
+  const { orders, isLoading } = useGetOrdersByUserId(userId);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
 
   if (orders.length === 0) {
     return <h1>No orders found.</h1>;

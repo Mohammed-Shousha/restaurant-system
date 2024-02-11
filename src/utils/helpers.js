@@ -20,5 +20,9 @@ export const calculateTotal = (items) => {
 };
 
 export const formatDate = (date) => {
-  return new Date(date).toLocaleDateString('en-US');
+  return new Date(date).toLocaleTimeString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
 };

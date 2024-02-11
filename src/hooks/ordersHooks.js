@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
   getAllOrders,
   getOrderById,
@@ -6,106 +7,95 @@ import {
   createOrder,
   updateOrderStatus,
 } from '@services/ordersServices';
+import toast from 'react-hot-toast';
 
 export const useGetOrders = () => {
-  const [orders, setOrders] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: orders, isPending: isLoading } = useQuery({
+    queryKey: ['orders'],
+    queryFn: getAllOrders,
+  });
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const orders = await getAllOrders();
-      setOrders(orders);
-      setIsLoading(false);
-    };
-
-    fetchOrders();
-  }, []);
-
-  return {
-    orders,
-    isLoading,
-  };
+  return { orders, isLoading };
 };
 
-export const useCreateOrder = () => {
-  const [order, setOrder] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
+export const useCreateOrder = (userId) => {
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
 
-  const handleCreateOrder = async (userId, items) => {
-    setIsLoading(true);
-    try {
-      const newOrder = await createOrder(userId, items);
-      setOrder(newOrder);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+  const { mutate: handleCreateOrder, isPending: isLoading } = useMutation({
+    mutationFn: (data) => createOrder(userId, data),
+    onSuccess: (order) => {
+      queryClient.invalidateQueries('orders');
+      navigate(`/orders/${order.id}`);
+      toast.success('Order created successfully.');
+    },
+    onError: () => {
+      toast.error('Could not create the order.');
+    },
+  });
 
-  return {
-    order,
-    isLoading,
-    error,
-    handleCreateOrder,
-  };
+  return { isLoading, handleCreateOrder };
 };
 
 export const useGetOrderById = (id) => {
-  const [order, setOrder] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchOrder = async () => {
-      const order = await getOrderById(id);
-      setOrder(order);
-      setIsLoading(false);
-    };
-
-    fetchOrder();
-  }, [id]);
+  const { data: order, isPending: isLoading } = useQuery({
+    queryKey: ['order', id],
+    queryFn: () => getOrderById(id),
+    enabled: !!id,
+  });
 
   return { order, isLoading };
 };
 
 export const useGetOrdersByUserId = (userId) => {
-  const [orders, setOrders] = useState([]);
+  const { data: orders, isPending: isLoading } = useQuery({
+    queryKey: ['orders', userId],
+    queryFn: () => getOrdersByUserId(userId),
+    enabled: !!userId,
+  });
 
-  useEffect(() => {
-    const fetchOrders = async () => {
-      const orders = await getOrdersByUserId(userId);
-      setOrders(orders);
-    };
-
-    fetchOrders();
-  }, [userId]);
-
-  return orders;
+  return { orders, isLoading };
 };
 
-export const useUpdateOrderStatus = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [order, setOrder] = useState(null);
+export const useUpdateOrderStatus = (orderId) => {
+  const queryClient = useQueryClient();
 
-  const handleUpdateOrderStatus = async (orderId, newStatus) => {
-    setIsLoading(true);
-    try {
-      const updatedOrder = await updateOrderStatus(orderId, newStatus);
-      console.log({ updatedOrder });
-      setOrder(updatedOrder);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setIsLoading(false);
+  const { mutate: handleUpdateOrderStatus, isPending: isLoading } = useMutation(
+    {
+      mutationFn: (status) => updateOrderStatus(orderId, status),
+      onSuccess: () => {
+        toast.success('Order updated successfully.');
+        queryClient.invalidateQueries('orders');
+      },
+      onError: () => {
+        toast.error('Could not update the order.');
+      },
     }
-  };
+  );
 
-  return {
-    isLoading,
-    error,
-    handleUpdateOrderStatus,
-    order,
-  };
+  return { isLoading, handleUpdateOrderStatus };
+
+  // const [isLoading, setIsLoading] = useState(false);
+  // const [error, setError] = useState(null);
+  // const [order, setOrder] = useState(null);
+
+  // const handleUpdateOrderStatus = async (orderId, newStatus) => {
+  //   setIsLoading(true);
+  //   try {
+  //     const updatedOrder = await updateOrderStatus(orderId, newStatus);
+  //     console.log({ updatedOrder });
+  //     setOrder(updatedOrder);
+  //   } catch (error) {
+  //     setError(error);
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
+  // return {
+  //   isLoading,
+  //   error,
+  //   handleUpdateOrderStatus,
+  //   order,
+  // };
 };

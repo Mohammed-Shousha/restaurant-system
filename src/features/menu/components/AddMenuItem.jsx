@@ -28,10 +28,10 @@ const AddMenuItem = ({ onCloseModal }) => {
 
   const { handleCreateMenuItem, isLoading } = useCreateMenuItem();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    await handleCreateMenuItem({ name, price, description });
+    handleCreateMenuItem({ name, price, description });
 
     onCloseModal();
   };
