@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 import { useAuth } from '@hooks/authHooks';
 
@@ -34,7 +35,14 @@ const Login = () => {
 
   return (
     <>
-      <Heading as='h1'>Login</Heading>
+      <Heading
+        as='h1'
+        onClick={() =>
+          toast('To login as an admin\n email: admin@system.com \n pw: 123456')
+        }
+      >
+        Login
+      </Heading>
       <Form onSubmit={handleSubmit}>
         <FormRowVertical label='Email address'>
           <Input
