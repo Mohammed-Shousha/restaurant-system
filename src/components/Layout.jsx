@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Outlet } from 'react-router-dom';
+import NavBar from './NavBar';
 
 const Container = styled.div`
   max-width: 120rem;
@@ -14,6 +15,7 @@ const Container = styled.div`
 const Layout = () => {
   return (
     <Container>
+      <NavBar />
       <Outlet />
     </Container>
   );

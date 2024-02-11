@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
@@ -22,6 +22,7 @@ import { CartProvider } from '@context/CartContext';
 import GlobalStyles from '@styles/GlobalStyles';
 import Layout from '@components/Layout';
 import AuthLayout from '@components/AuthLayout';
+import LandingPage from '@pages/LandingPage';
 
 const queryClient = new QueryClient();
 
@@ -32,7 +33,7 @@ const App = () => {
         <GlobalStyles />
         <BrowserRouter>
           <Routes>
-            <Route path='/' element={<Navigate to='/login' />} />
+            <Route path='/' element={<LandingPage />} />
             <Route element={<AuthLayout />}>
               <Route path='/login' element={<Login />} />
               <Route path='/signup' element={<SignUp />} />

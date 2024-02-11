@@ -22,7 +22,7 @@ export const useAuth = () => {
 
     clearLocalStorage();
 
-    navigate('/login');
+    navigate('/login', { replace: true });
   };
 
   const handleSignUp = async (email, password) => {
