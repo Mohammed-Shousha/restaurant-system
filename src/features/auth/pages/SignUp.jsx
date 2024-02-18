@@ -1,12 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '@hooks/authHooks';
+import { useAuth } from '@features/auth/authHooks';
 import Input from '@components/Input';
 import FormRowVertical from '@components/FormRowVertical';
 import Button from '@components/Button';
 import Form from '@components/Form';
-import Heading from '@components/Heading';
 
 const SignUp = () => {
   const [email, setEmail] = useState('');
@@ -33,7 +32,7 @@ const SignUp = () => {
 
   return (
     <>
-      <Heading as='h1'>Sign Up</Heading>
+      <h1>Sign Up</h1>
       <Form onSubmit={handleSubmit}>
         <FormRowVertical label='Email address'>
           <Input
