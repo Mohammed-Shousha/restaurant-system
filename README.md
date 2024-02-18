@@ -62,3 +62,15 @@ Check out these related projects:
 ## Licensing
 
 This project is open-source and licensed under the [MIT License](https://mit-license.org/).
+
+## Screenshots
+
+![Login](https://github.com/Mohammed-Shousha/restaurant-system/assets/65350067/def0bce9-f0d5-40b3-9427-3fdde4c78cd4)
+
+![Menu](https://github.com/Mohammed-Shousha/restaurant-system/assets/65350067/1dfe4fe2-0715-4c00-9e0f-3cdcd9571149)
+
+![Cart](https://github.com/Mohammed-Shousha/restaurant-system/assets/65350067/2072b326-77cc-4d66-b37a-3628b0197d36)
+
+![Add-Menu-Item](https://github.com/Mohammed-Shousha/restaurant-system/assets/65350067/e1ab86ec-1c5f-43d1-a25c-9427a1b204f6)
+
+
