@@ -1,7 +1,7 @@
-import { useAuth } from '@hooks/authHooks';
+import { useAuth } from '@features/auth/authHooks';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import Button from './Button';
+import Button from '@components/Button';
 import useAuthorization from '@hooks/useAuthentication';
 
 const StyledNavBar = styled.nav`

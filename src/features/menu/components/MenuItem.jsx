@@ -1,5 +1,5 @@
 import UpdateItemQuantity from '@features/cart/components/UpdateItemQuantity';
-import useCart from '@hooks/useCart';
+import useCart from '@features/cart/useCart';
 
 import Button from '@components/Button';
 

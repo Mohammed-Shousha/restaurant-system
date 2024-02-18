@@ -1,6 +1,6 @@
-import { useGetOrders } from '@hooks/ordersHooks';
+import { useGetOrders } from '@features/orders/ordersHooks';
 
-import AdminOrderItem from '../components/AdminOrderItem';
+import AdminOrderItem from '@features/orders/components/AdminOrderItem';
 import Spinner from '@components/Spinner';
 
 const AdminOrders = () => {

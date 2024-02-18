@@ -6,7 +6,7 @@ import {
   updateMenuItem,
   deleteMenuItem,
   createMenuItem,
-} from '@services/menuServices';
+} from '@features/menu/menuServices';
 
 export const useGetMenuItems = () => {
   const {

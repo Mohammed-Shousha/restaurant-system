@@ -1,9 +1,9 @@
 import Modal from '@components/Modal';
 
-import { useDeleteMenuItem } from '@hooks/menuHooks';
+import { useDeleteMenuItem } from '@features/menu/menuHooks';
 
-import UpdateMenuItemModal from './UpdateMenuItem';
-import DeleteMenuItemModal from './DeleteMenuItem';
+import UpdateMenuItemModal from '@features/menu/components/UpdateMenuItem';
+import DeleteMenuItemModal from '@features/menu/components/DeleteMenuItem';
 
 import Button from '@components/Button';
 import Item from '@components/Item';

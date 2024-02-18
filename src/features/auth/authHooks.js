@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { login, signOut, signUp } from '../services/authServices';
+import { login, signOut, signUp } from '@features/auth/authServices';
 
 import { setLocalStorage, clearLocalStorage } from '@utils/helpers';
 

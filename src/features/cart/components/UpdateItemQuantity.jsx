@@ -1,5 +1,5 @@
 import Button from '@components/Button';
-import useCart from '@hooks/useCart';
+import useCart from '@features/cart/useCart';
 
 import styled from 'styled-components';
 

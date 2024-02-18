@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Row from './Row';
+import Row from '@components/Row';
 
 const ButtonsRow = styled(Row)`
   justify-content: flex-end;

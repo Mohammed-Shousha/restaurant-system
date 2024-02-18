@@ -1,6 +1,6 @@
 import Item from '@components/Item';
 import Spinner from '@components/Spinner';
-import { useGetOrderById } from '@hooks/ordersHooks';
+import { useGetOrderById } from '@features/orders/ordersHooks';
 import { calculateTotal } from '@utils/helpers';
 import { useParams } from 'react-router-dom';
 

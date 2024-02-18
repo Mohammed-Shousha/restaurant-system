@@ -1,9 +1,9 @@
 // import { Link } from 'react-router-dom';
 
 import Row from '@components/Row';
-import CartItem from '../components/CartItem';
-import useCart from '@hooks/useCart';
-import { useCreateOrder } from '@hooks/ordersHooks';
+import CartItem from '@features/cart/components/CartItem';
+import useCart from '@features/cart/useCart';
+import { useCreateOrder } from '@features/orders/ordersHooks';
 
 import Button from '@components/Button';
 import Spinner from '@components/Spinner';

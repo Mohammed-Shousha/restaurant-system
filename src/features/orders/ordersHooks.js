@@ -6,7 +6,7 @@ import {
   getOrdersByUserId,
   createOrder,
   updateOrderStatus,
-} from '@services/ordersServices';
+} from '@features/orders/ordersServices';
 import toast from 'react-hot-toast';
 
 export const useGetOrders = () => {

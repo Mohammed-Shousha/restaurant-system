@@ -1,5 +1,5 @@
 import { calculateTotal } from '@utils/helpers';
-import supabase from './supabase';
+import supabase from '@services/supabase';
 import { orderStatus } from '@utils/constants';
 
 const ordersTable = 'orders';

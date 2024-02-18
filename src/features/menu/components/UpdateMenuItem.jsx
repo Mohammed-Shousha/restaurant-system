@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { useUpdateMenuItem } from '@hooks/menuHooks';
+import { useUpdateMenuItem } from '@features/menu/menuHooks';
 
 import FormRowVertical from '@components/FormRowVertical';
 import Input from '@components/Input';

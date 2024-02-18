@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import MenuItem from '../components/MenuItem';
-import { useGetMenuItems } from '@hooks/menuHooks';
-import useCart from '@hooks/useCart';
+import MenuItem from '@features/menu/components/MenuItem';
+import { useGetMenuItems } from '@features/menu/menuHooks';
+import useCart from '@features/cart/useCart';
 
 import Spinner from '@components/Spinner';
 import ErrorText from '@components/ErrorText';

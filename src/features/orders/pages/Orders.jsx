@@ -1,5 +1,5 @@
-import { useGetOrdersByUserId } from '@hooks/ordersHooks';
-import OrderItem from '../components/OrderItem';
+import { useGetOrdersByUserId } from '@features/orders/ordersHooks';
+import OrderItem from '@features/orders/components/OrderItem';
 import Spinner from '@components/Spinner';
 
 const OrdersPage = () => {

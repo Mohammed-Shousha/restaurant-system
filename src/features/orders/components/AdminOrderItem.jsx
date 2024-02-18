@@ -1,5 +1,5 @@
 import { orderStatus } from '@utils/constants';
-import { useUpdateOrderStatus } from '@hooks/ordersHooks';
+import { useUpdateOrderStatus } from '@features/orders/ordersHooks';
 
 import Button from '@components/Button';
 import Spinner from '@components/Spinner';

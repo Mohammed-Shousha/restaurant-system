@@ -1,5 +1,5 @@
-import useCart from '@hooks/useCart';
-import UpdateItemQuantity from './UpdateItemQuantity';
+import useCart from '@features/cart/useCart';
+import UpdateItemQuantity from '@features/cart/components/UpdateItemQuantity';
 import Button from '@components/Button';
 
 import Item from '@components/Item';

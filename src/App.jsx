@@ -2,8 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-import Login from './features/auth/pages/Login';
-import SignUp from './features/auth/pages/SignUp';
+import Login from '@features/auth/pages/Login';
+import SignUp from '@features/auth/pages/SignUp';
 
 import Menu from '@features/menu/pages/Menu';
 
@@ -11,7 +11,7 @@ import Order from '@features/orders/pages/Order';
 import Orders from '@features/orders/pages/Orders';
 import AdminOrders from '@features/orders/pages/AdminOrders';
 
-import NotFoundPage from '@pages/NotFound';
+import NotFoundPage from '@pages/NotFoundPage';
 import PrivateRoute from '@components/PrivateRoute';
 import AdminMenu from '@features/menu/pages/AdminMenu';
 

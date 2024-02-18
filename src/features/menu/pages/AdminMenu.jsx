@@ -1,7 +1,7 @@
-import { useGetMenuItems } from '@hooks/menuHooks';
+import { useGetMenuItems } from '@features/menu/menuHooks';
 
-import AdminMenuItem from '../components/AdminMenuItem';
-import AddMenuItem from '../components/AddMenuItem';
+import AdminMenuItem from '@features/menu/components/AdminMenuItem';
+import AddMenuItem from '@features/menu/components/AddMenuItem';
 
 import Button from '@components/Button';
 import Spinner from '@components/Spinner';
